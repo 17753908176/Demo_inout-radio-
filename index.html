@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="jquery/jquery-1.12.0.min.js"></script>
     <style>
         *{
             margin: 0;
@@ -47,6 +48,7 @@
             background: url(checked.png) no-repeat;
             background-size: cover;
         }
+
         .type dd b{
             position: absolute;
             left: 0;
@@ -54,7 +56,13 @@
             display: block;
             width: 16px;
             height: 16px;
+        }
+        .icon{
             background: url(radio.png) no-repeat;
+            background-size: cover;
+        }
+        .change{
+            background: url(checked.png) no-repeat;
             background-size: cover;
         }
     </style>
@@ -63,11 +71,29 @@
 <div class="type">
     <dl>
         <dt>配送类型:</dt>
-        <dd><a href="#" class="a"><b></b>全部</a></dd>
-        <dd><a href="#" class="a"><b></b>京东配送</a></dd>
-        <dd><a href="#" class="a"><b></b>第三方配送</a></dd>
+        <dd class="level"><a href="#" class="a"><b class="icon"></b>全部</a></dd>
+        <dd class="level"><a href="#" class="a"><b class="icon"></b>京东配送</a></dd>
+        <dd class="level"><a href="#" class="a"><b class="icon"></b>第三方配送</a></dd>
     </dl>
 </div>
+<script>
+    $(function () {
+        //单击按钮 确定之后更换背景
+        //获取dd列表
+        $(" .level > a ").click(function (){
+            var b = $(this).children("b");
+            var parent_a = $(this).children("b").parent();
+            console.log($(this));
+            var parent_dd = $(parent_a).siblings();
+            $(b).removeClass("icon").addClass("change");
+            var child_a = $(parent_dd).children("a");
+            var child_b = $(child_a).children("b");
+            $(child_b).removeClass("change").addClass("icon");
+            return false;
+            console.log(parent_dd);
+        })
+    })
+</script>
 
 </body>
 </html>
