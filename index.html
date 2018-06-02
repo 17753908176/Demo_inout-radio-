@@ -81,16 +81,15 @@
         //单击按钮 确定之后更换背景
         //获取dd列表
         $(" .level > a ").click(function (){
+            //获取子元素b
             var b = $(this).children("b");
-            var parent_a = $(this).children("b").parent();
-            console.log($(this));
-            var parent_dd = $(parent_a).siblings();
+            //修改子元素的样式 带点的圆圈显示，隐藏不带点的
             $(b).removeClass("icon").addClass("change");
-            var child_a = $(parent_dd).children("a");
-            var child_b = $(child_a).children("b");
-            $(child_b).removeClass("change").addClass("icon");
+            //获取父级元素，然后获取每一个dd下的子元素给起样式还原。
+            var parent_dd = $(b).parent().parent().siblings();
+            var child_b = parent_dd.children().children();
+            child_b.removeClass("change").addClass("icon");
             return false;
-            console.log(parent_dd);
         })
     })
 </script>
